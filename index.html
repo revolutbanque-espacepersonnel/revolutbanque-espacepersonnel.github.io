@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Classic Login Form Example</title>
+    <link href="https://fonts.googleapis.com/css?family=Assistant:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <!-- Liens vers les fichiers CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+      body {
+          background-image: url('Hero_Mobile.png'); /* Chemin vers votre image de fond */
+          background-size: cover; /* Ajuster la taille de l'image pour couvrir tout le fond */
+          background-repeat: no-repeat; /* Ne pas répéter l'image */
+          background-attachment: fixed; /* Empêcher le défilement de l'image avec la page */
+      }
+      /* Vos autres styles CSS ici */
+  </style>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<section class='login' id='login'>
+  <div class='head'>
+      <img src='revolut-logo.svg' alt='Logo de REVOLUT BANQUE'>
+  </div>
+  <p class='msg' style='font-size: 24px; font-family: Montserrat, sans-serif;'>Bienvenue sur l'espace de connexion !</p>
+
+  <div class='form'>
+      <form>
+          <input type="text" placeholder='veuillez entrer votre email' class='text' id='username' required><br>
+          <input type="password" placeholder='Veuillez entrer votre mot de passe' class='password' id='password' required><br>
+          <a href="#" class='btn-login' id='do-login'>Connexion</a>
+      </form>
+  </div>
+</section>
+
+<!-- partial -->
+
+<!-- Modal de chargement -->
+<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <div class="modal-body text-center">
+              <div class="spinner-border text-primary" role="status">
+                  <span class="sr-only">Connexion en cours...</span>
+              </div>
+              <p>Connexion en cours...</p>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+<script>
+  // Identifiants de connexion pré-définis
+  const usernameValide = "guilbertnicole282@gmail.com";
+  const motDePasseValide = "36pMQfsQ6Pf85t";
+
+  document.getElementById('do-login').addEventListener('click', function () {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      // Vérifiez si les informations de connexion sont correctes
+      if (username === usernameValide && password === motDePasseValide) {
+          // Ouvrez le modal de chargement
+          $('#loadingModal').modal('show');
+
+          // Attendez 4 secondes avant de rediriger
+          setTimeout(function () {
+    // Fermez le modal de chargement
+    $('#loadingModal').modal('hide');
+
+    // Affichez un message de connexion réussie
+    const modalContent = document.querySelector('.modal-content');
+    modalContent.innerHTML = `
+        <div class="modal-body text-center">
+            <p>Connexion réussie !</p>
+        </div>
+    `;
+
+    // Redirigez l'utilisateur vers une autre page après la connexion réussie
+    setTimeout(function () {
+        window.location.href = "tableaudebord.html";
+    }, 1000); // Redirige après 1 seconde (ajustez si nécessaire)
+}, 4000); // 4000 millisecondes (4 secondes)
+      } else {
+          alert("Nom d'utilisateur ou mot de passe incorrect.");
+      }
+  });
+</script>
+
+<!-- Liens vers les fichiers JavaScript de Bootstrap et jQuery (nécessaires pour Bootstrap) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

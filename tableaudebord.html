@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord</title>
+    <!-- Liens vers les fichiers CSS de Bootstrap et Bootstrap icons -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Votre propre fichier CSS pour personnaliser le tableau de bord -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Styles CSS personnalisés pour le tableau des transactions -->
+    <style>
+        /* Styles CSS pour le tableau des transactions */
+                /* Styles CSS pour le tableau des transactions */
+        .table {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #333;
+            background-color: #f0f0f0; /* Ajoutez cette ligne pour définir la couleur de fond en gris */
+        }
+
+
+    
+        .table th,
+        .table td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dee2e6;
+            background-color: #f8f9fa;
+        }
+
+        .table tbody+tbody {
+            border-top: 2px solid #dee2e6;
+        }
+
+        .table .table {
+            background-color: #fff;
+        }
+
+        .table-sm th,
+        .table-sm td {
+            padding: 0.3rem;
+        }
+
+        .table-bordered {
+            border: 1px solid #dee2e6;
+        }
+
+        .table-bordered th,
+        .table-bordered td {
+            border: 1px solid #dee2e6;
+        }
+
+        .table-bordered thead th,
+        .table-bordered thead td {
+            border-bottom-width: 2px;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .table-hover tbody tr:hover {
+            color: #333;
+            background-color: rgba(0, 0, 0, 0.075);
+        }
+    </style>
+</head>
+<body>
+    <!-- Menu de navigation (pour les écrans de taille moyenne et plus grands) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-none d-md-block fixed-top">
+        <ul class="navbar-nav flex-column w-100"> <!-- Utilisez la classe "w-100" pour que le menu occupe toute la largeur -->
+            <li class="nav-item active">
+                <a class="nav-link" href="#" onclick="showSection('accueil');">
+                    <i class="fas fa-home"></i> Accueil
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="profil.html" onclick="showSection('profil');">
+                    <i class="fas fa-user"></i> Profil
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="virement.html" onclick="showSection('tableaux-de-bord');">
+                    <i class="fas fa-chart-bar"></i> Espace Virement
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="confirmLogout();">
+                    <i class="fas fa-sign-out-alt"></i> Déconnexion
+                </a>
+            </li>
+        </ul>
+    </nav>
+    
+<br>
+    <div class="container mt-4" class="font-family: Montserrat">
+        <h1>Bienvenue dans votre tableau de bord Mme Nicole Guilbert</h1>
+<br>
+
+        <!-- Tableau des transactions -->
+        <table class="table table-bordered table-striped">
+            <br><br>
+            <p><strong>Voici vos dernières transactions</strong></p>
+
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Montant</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Lignes du tableau avec les transactions -->
+                <tr>
+                    <td>2023-10-05</td>
+                    <td>Location de Mercedes(voiture)</td>
+                    <td>8500.00 €</td>
+                </tr>
+                <!-- Exemple d'une autre ligne de transaction -->
+                <tr>
+                    <td>2023-10-03</td>
+                    <td>Facture mensuelle</td>
+                    <td>6350.00 €</td>
+                </tr>
+                <tr>
+                    <td>2023-10-01</td>
+                    <td>Facture Internet</td>
+                    <td>210.00 €</td>
+                </tr>
+                <!-- Ajoutez d'autres lignes de transactions ici -->
+            </tbody>
+        </table>
+        <a href="virement.html" class="btn btn-dark">Effectuer un virement</a>
+    </div>
+    
+    <!-- Menu de navigation en bas (pour les écrans mobiles) -->
+    <nav class="navbar navbar-dark bg-dark d-md-none fixed-bottom">
+        <!-- Bouton pour afficher/masquer les éléments du menu -->
+        <button class="btn btn-dark" id="menuButton">
+            <i class="fas fa-bars"></i> Menu
+        </button>
+        <!-- Éléments du menu (initiallement masqués) -->
+        <ul class="navbar-nav" id="menuItems" style="display: none;">
+            <li class="nav-item active">
+                <a class="nav-link" href="accueil.html">
+                    <i class="fas fa-home"></i> Accueil
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="profil.html">
+                    <i class="fas fa-user"></i> Profil
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="virement.html">
+                    <i class="fas fa-chart-bar"></i> Espace virement
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="confirmLogout()">
+                    <i class="fas fa-sign-out-alt"></i> Déconnexion
+                </a>
+            </li>
+        </ul>        
+    </nav>
+    
+    <!-- Liens vers les fichiers JavaScript de Bootstrap et jQuery (nécessaires pour Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Script JavaScript pour gérer l'affichage du menu en bas -->
+    <script>
+        const menuButton = document.getElementById('menuButton');
+        const menuItems = document.getElementById('menuItems');
+    
+        menuButton.addEventListener('click', () => {
+            if (menuItems.style.display === 'none' || menuItems.style.display === '') {
+                menuItems.style.display = 'block';
+            } else {
+                menuItems.style.display = 'none';
+            }
+        });
+    
+        function showSection(sectionId) {
+            // Masquer toutes les sections
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+            });
+    
+            // Afficher la section correspondante
+            document.getElementById(sectionId).style.display = 'block';
+        }
+        function confirmLogout() {
+            const confirmResult = confirm("Êtes-vous sûr de vouloir vous déconnecter ?");
+
+            if (confirmResult) {
+                // Redirigez vers la page index.html
+                window.location.href = "index.html";
+            }
+        }
+    </script>
+</body>
+</html>
